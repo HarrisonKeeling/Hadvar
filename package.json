@@ -1,0 +1,26 @@
+{
+  "name": "hadvar",
+  "version": "1.0.0",
+  "description": "The purpose of the proposed software is to achieve a universal way of managing multi-platform communities.",
+  "main": "hadvar.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarrisonKeeling/Univeral_Banlist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HarrisonKeeling/Univeral_Banlist/issues"
+  },
+  "homepage": "https://github.com/HarrisonKeeling/Univeral_Banlist#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "node-telegram-bot-api": "^0.30.0"
+  }
+}
