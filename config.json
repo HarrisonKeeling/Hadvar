@@ -11,7 +11,7 @@
 		"name": "Senate Discord",
 		"type": "discord",
 		"configuration": {
-			"id": 562786451994181632
+			"id": 56278645199418163200000000
 		}
 	},
 	{
@@ -23,6 +23,7 @@
 	}
 	],
 	"dependencies": {
-		"Senate Discord": ["Senate Discussion"]
+		"Senate Discord": ["Senate Discussion"],
+		"Vault Dwellas Discord": ["Senate Discussion"]
 	}
 }
