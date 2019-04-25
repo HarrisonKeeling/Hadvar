@@ -15,9 +15,15 @@ const constructors = {
 };
 
 // Each connected source is a child process
-const sources = config.sources.map(source => instantiateSource(source));
+const sources = new Map(config.sources.map(source => [source.name, instantiateSource(source)]));
 
 function instantiateSource(source) {
 	const child = new constructors[source.type](source, config.dependencies[source.name]);
+	child.on('getInviteInformation', (source, callback) => {
+		logger.log('getInviteInformation request received from', child.name, 'for', source);
+		let information = sources.get(source).instance.refreshInformation();
+		callback(information);
+	});
+
 	return Object.assign(source, { instance: child, dependencies: config.dependencies[source.name] });
 }
