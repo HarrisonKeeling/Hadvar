@@ -13,10 +13,16 @@
 		"configuration": {
 			"id": 562786451994181632
 		}
+	},
+	{
+		"name": "Vault Dwellas Discord",
+		"type": "discord",
+		"configuration": {
+			"id": 481544277055504384
+		}
 	}
 	],
 	"dependencies": {
-		"primary": ["Senate Discussion"],
-		"Senate Discussion": ["Senate Discord"]
+		"Senate Discord": ["Senate Discussion"]
 	}
 }

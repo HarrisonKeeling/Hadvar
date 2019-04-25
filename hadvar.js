@@ -18,6 +18,6 @@ const constructors = {
 const sources = config.sources.map(source => instantiateSource(source));
 
 function instantiateSource(source) {
-	const child = new constructors[source.type](source);
-	return Object.assign(source, { instance: child });
+	const child = new constructors[source.type](source, config.dependencies[source.name]);
+	return Object.assign(source, { instance: child, dependencies: config.dependencies[source.name] });
 }
