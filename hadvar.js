@@ -15,9 +15,20 @@ const constructors = {
 };
 
 // Each connected source is a child process
-const sources = config.sources.map(source => instantiateSource(source));
+const sources = new Map(config.sources.map(source => [source.name, instantiateSource(source)]));
 
 function instantiateSource(source) {
-	const child = new constructors[source.type](source);
-	return Object.assign(source, { instance: child });
+	const child = new constructors[source.type](source, config.dependencies[source.name]);
+	child.on('createAuthenticationRequest', (target, tag, callback) => {
+		logger.log('createAuthenticationRequest for', target);
+		let information = sources.get(target).instance.createAuthenticationRequest(child.name, tag);
+		callback(information);
+	});
+
+	child.on('validatedAuthentication', (target, tag) => {
+		logger.log('validatedAuthentication for', target, `(tag: ${tag})`);
+		sources.get(target).instance.validatedAuthentication(tag);
+	});
+
+	return Object.assign(source, { instance: child, dependencies: config.dependencies[source.name] });
 }
