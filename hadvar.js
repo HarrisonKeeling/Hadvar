@@ -19,10 +19,15 @@ const sources = new Map(config.sources.map(source => [source.name, instantiateSo
 
 function instantiateSource(source) {
 	const child = new constructors[source.type](source, config.dependencies[source.name]);
-	child.on('getInviteInformation', (source, callback) => {
-		logger.log('getInviteInformation request received from', child.name, 'for', source);
-		let information = sources.get(source).instance.refreshInformation();
+	child.on('createAuthenticationRequest', (target, tag, callback) => {
+		logger.log('createAuthenticationRequest for', target);
+		let information = sources.get(target).instance.createAuthenticationRequest(child.name, tag);
 		callback(information);
+	});
+
+	child.on('validatedAuthentication', (target, tag) => {
+		logger.log('validatedAuthentication for', target, `(tag: ${tag})`);
+		sources.get(target).instance.validatedAuthentication(tag);
 	});
 
 	return Object.assign(source, { instance: child, dependencies: config.dependencies[source.name] });

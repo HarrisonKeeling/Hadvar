@@ -4,26 +4,27 @@
 		"name": "Senate Discussion",
 			"type": "telegram",
 			"configuration": {
-				"id": -1001129111936
+				"id": "-1001129111936"
 			}
 	},
 	{ 
 		"name": "Senate Discord",
 		"type": "discord",
 		"configuration": {
-			"id": 56278645199418163200000000
+			"id": "562786451994181632"
 		}
 	},
 	{
 		"name": "Vault Dwellas Discord",
 		"type": "discord",
 		"configuration": {
-			"id": 481544277055504384
+			"id": "481544277055504384",
+			"whitelistRole": "482016552846360582"
 		}
 	}
 	],
 	"dependencies": {
 		"Senate Discord": ["Senate Discussion"],
-		"Vault Dwellas Discord": ["Senate Discussion"]
+		"Vault Dwellas Discord": ["Senate Discord"]
 	}
 }
