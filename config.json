@@ -1,18 +1,11 @@
 {
 	"sources": [
 	{
-		"name": "Senate Discussion",
+		"name": "Master Group",
 			"type": "telegram",
 			"configuration": {
-				"id": "-1001129111936"
+				"id": "-1001288702953"
 			}
-	},
-	{ 
-		"name": "Senate Discord",
-		"type": "discord",
-		"configuration": {
-			"id": "562786451994181632"
-		}
 	},
 	{
 		"name": "Vault Dwellas Discord",
@@ -24,7 +17,6 @@
 	}
 	],
 	"dependencies": {
-		"Senate Discord": ["Senate Discussion"],
-		"Vault Dwellas Discord": ["Senate Discord"]
+		"Master Group": ["Vault Dwellas Discord"]
 	}
 }
