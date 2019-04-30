@@ -1,80 +1,60 @@
-# Universal Banlist Outline
+# Hadvar
+Hadvar is a mutliplatform chatbot tool to assist in management
+of large communities via linking accounts, enforcing a dependency
+of services, and banning accounts across multiple platforms.
 
-The purpose of the proposed software is to achieve a
-universal way of managing multi-platform communities.
+<img src="doc/media/hadvar.png" width="150">
+
+## How it works
+A "Source of Trust" is a channel in which users are allowed to freely join;
+a funnel of sorts into a community.
+
+Once a user joins a primary source of trust, they are able to join additional
+services that depend on it.
+
+When joining another dependent service, they will use the dependency as
+a virtual phone number to authenticate via a two-factor
+authentication code.  By doing so, we can essentially "tie" the two services
+together, without having to use services like OAuth.
+
+## Current Development Status
+**Short Term**
+- [x] Cross-platform two-factor authentication (Discord & Telegram)
+- [ ] User identity storage
+- [ ] Add automatic same-platform authentication
+- [ ] Improve token generation
+- [ ] Universal ban events
+- [ ] Universal unban events
+
+**Long Term**
+- [ ] User backup
+- [ ] Optional source of trust captcha
+- [ ] Optional source of trust bad actor alternate account identification
+
+## Installation
+The project assumes you have [npm](https://www.npmjs.com/) and [nodenv](https://github.com/nodenv/nodenv) installed.
+
+```bash
+nodenv install && npm install
+```
+
+You can run the configuration with
+```bash
+npm start
+```
 
 ## Proposed Use Case
 I want to bridge together a telegram group, telegram channel,
 discord server, and affiliated minecraft server.
 
-The Telegram group will act as the "source of trust," which
-will act as the primary source for entering the community.
+The Telegram group will act as a "source of trust," which
+will act as the primary channel for entering the community.
 
-## How it works
-Once a user joins a primary source of trust, they are able
-to join additional services that rely on it.  They will use
-the primary source of trust as their virtual phone number to
-authenticate the other services via a two-factor authentication
-system.
+The Discord server will be dependent on the Telegram group, requiring the user
+to be a part of the group in order to view/read content.
 
-### Example
-I will use the Telegram API to and event triggers to sync
-ban lists between a database and Telegram.  Additionally,
-other services such as Discord and Minecraft will sync
-to this database and match linked identities and ban approiate
-accounts.
+The Minecraft server will be dependent on the Discord, requiring the user
+to be a part of the Discord **and** Telegram group in order to join the server.
 
-*Source of Trust Configuration*
-```
-# Source of Trust Tree
-primary:
- - telegram_group
-
-telegram_group
- - telegram_channel
- - discord
-
-discord
- - minecraft
-
-
-# Identity Configuration
-telegram_group
- - {telegram_group_identifier}
-
-telegram_channel
- - {telegram_channel_identifier}
-
-discord
- - {discord_server_identifier}
-
-minecraft
- - {server_ip}
-
-```
-
-In this example, a user must be a member of the telegram
-group to gain access to other services.  Once a member,
-if they join the Discord server they will be sent a
-code in the telegram group that they will need to enter
-as two-factor verification.  It will then link these two
-account services together as the same identity.
-
-Once entered, they will gain access to the discord.  Now
-that they have access to the discord, they will have the
-ability to verify their identity on the Minecraft server
-to obtain authentication to build.
-
-At any time if someone is banned on any of the linked
-services, it will automatically ban the user's linked
-identities across all configured services.
-
-Single or few sources of trust will serve as the "home" of the
-community, to prevent spam on all fronts -- multiple primary
-sources of members will make it hard to distinguish alternate accounts
-and abuse of the permissions sytem -- but are not necessarily required.
-
-When a user wants to authenticate with a new service,
-the default two-factor option will link to the first primary
-source of trust communication method, but they will be able
-to verify the code on any parent linked service they specify
+Hadvar will allow me to enforce these community restrictions and also efficiently
+manage banning users

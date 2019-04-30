@@ -1,3 +1,7 @@
 # Vim Swap Files
 *.swp
 node_modules
+
+# Configuration Files
+config.json
+settings.js

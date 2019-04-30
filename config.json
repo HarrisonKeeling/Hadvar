@@ -1,0 +1,22 @@
+{
+	"sources": [
+	{
+		"name": "Film Discussion Chat",
+			"type": "telegram",
+			"configuration": {
+				"id": "{Telegram Chat ID}"
+			}
+	},
+	{
+		"name": "Film Discussion Discord",
+		"type": "discord",
+		"configuration": {
+			"id": "{Discord Chat ID}",
+			"whitelistRole": "{Whitelisted Role ID}"
+		}
+	}
+	],
+	"dependencies": {
+		"Film Discussion Discord": ["Film Discussion Chat"]
+	}
+}
