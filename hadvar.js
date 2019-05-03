@@ -25,9 +25,9 @@ function instantiateSource(source) {
 		callback(information);
 	});
 
-	child.on('validatedAuthentication', (target, tag) => {
+	child.on('validatedAuthentication', (target, tag, linkedIdentity) => {
 		logger.log('validatedAuthentication for', target, `(tag: ${tag})`);
-		sources.get(target).instance.validatedAuthentication(tag);
+		sources.get(target).instance.validatedAuthentication(source.type, tag, linkedIdentity);
 	});
 
 	return Object.assign(source, { instance: child, dependencies: config.dependencies[source.name] });

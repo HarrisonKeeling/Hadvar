@@ -20,7 +20,7 @@ together, without having to use services like OAuth.
 ## Current Development Status
 **Short Term**
 - [x] Cross-platform two-factor authentication (Discord & Telegram)
-- [ ] User identity storage
+- [X] User identity storage
 - [ ] Add automatic same-platform authentication
 - [ ] Improve token generation
 - [ ] Universal ban events
