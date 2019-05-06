@@ -29,6 +29,14 @@ function instantiateSource(source) {
 		logger.log('validatedAuthentication for', target, `(tag: ${tag})`);
 		sources.get(target).instance.validatedAuthentication(source.type, tag, linkedIdentity);
 	});
+	
+	child.on('banIdentityFromService', (service, user) => {
+			sources.forEach((source, key) => {
+					if (source.type != service || source.name == child.name) return;
+					logger.log(source.name,"banning user", user);
+					source.instance.banUser(user, { name: child.name, type: child.type });	
+			});
+	});
 
 	return Object.assign(source, { instance: child, dependencies: config.dependencies[source.name] });
 }
